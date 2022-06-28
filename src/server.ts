@@ -7,7 +7,6 @@ import express, { NextFunction, Request, Response } from 'express';
 import StatusCodes from 'http-status-codes';
 import 'express-async-errors';
 
-import apiRouter from './routes/api';
 import logger from 'jet-logger';
 import { CustomError } from '@shared/errors';
 
@@ -40,8 +39,6 @@ if (process.env.NODE_ENV === 'production') {
  *                         API routes and error handling
  **********************************************************************************/
 
-// Add api router
-app.use('/api', apiRouter);
 
 // Error handling
 app.use((err: Error | CustomError, _: Request, res: Response, __: NextFunction) => {

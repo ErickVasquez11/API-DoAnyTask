@@ -8,7 +8,7 @@ import  userRouter  from './user.router';
 const baseRouter = Router();
 
 //1. El baseRouter estara escuchando el usuario, todos los endpoint de userRouter
-baseRouter.use('/user', userRouter);
+baseRouter.use('/users', userRouter);
 
 export default baseRouter;
 

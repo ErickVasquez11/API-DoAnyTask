@@ -1,20 +1,10 @@
 import { Router } from 'express';
+import { createUser , getAllUsers } from 'src/controllers/user.controller';
 
 const userRouter = Router();
 
-//GetAll
-userRouter.get('/', (req, res) => {
-    return res.status(200).json('a');
-});
-
-//GetById
-userRouter.get('/:id', (req, res) => {
-    return res.status(200).json(req.params.id);
-});
-
-//FindByUsername
-userRouter.get('/find', (req, res) => {
-    return res.status(200).json('a');
-});
+//Crearemos un usuario 
+userRouter.post('/create', createUser);
+userRouter.get('/', getAllUsers);
 
 export default userRouter;

@@ -1,6 +1,6 @@
 import 'express-async-errors';
 
-import baseRouter from '@routes/baseRouter';
+import baseRouter from '@routes/base.router';
 import cookieParser from 'cookie-parser';
 import dbConnect from './config/db';
 import dotenv from 'dotenv';

@@ -2,7 +2,7 @@
 import { Router } from 'express';
 
 //Importamos el userRouter
-import  userRouter  from './userRouter';
+import  userRouter  from './user.router';
 
 
 const baseRouter = Router();

@@ -3,24 +3,9 @@
 
 //importamos el modelo creado
 import { Request, Response } from 'express';
-
-import userModel, { IUserModel } from '@models/user.model';
-
-interface ICreateUserRequest extends Request {
-    body: IUserModel;
-}
-
-//Lo que tendra la paginacion
-interface IPaginate {
-    limit: number;
-    page: number;
-    // Propiedad de ordenamiento
-    sortBy: string;
-    
-    //tipo
-    order: 'ASC' | 'DESC';
-}
-//para la paginacion
+// importando la interface 
+import { ICreateUserRequest } from '@interfaces/user.interfaces';
+import userModel from '@models/user.model';
 
 //creamos las funciones
 export const createUser = async (req: ICreateUserRequest, res: Response) => {
@@ -36,7 +21,7 @@ export const createUser = async (req: ICreateUserRequest, res: Response) => {
 }
 
 export const getAllUsers = async (req: Request, res: Response) => {
-   
+
     //Extraemos la query
     const { query } = req;
     

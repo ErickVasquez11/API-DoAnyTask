@@ -40,9 +40,33 @@ export const getById = async (req: Request, res: Response) => {
 
     //Extraemos la query
     const { params } = req;
+
+    try {
     const user = await userModel.findOne({_id: params.id});
     return res.status(user ? 200 : 404).json(user);
-}
+    }
+    catch(err: any) {
+        //logica personalizada para los errores
+        
+        return res.status(400).json(err);
+    }
+} 
+
+export const findByName = async (req: Request, res: Response) => {
+
+    //Extraemos la query
+    const { query } = req;
+
+    try {
+    const users = await userModel.find({ name: query.name});
+    return res.status(users ? 200 : 404).json(users);
+    }
+    catch(err: any) {
+        //logica personalizada para los errores
+        
+        return res.status(400).json(err);
+    }
+} 
 
 export const getAllUsers = async (req: Request, res: Response) => {
 

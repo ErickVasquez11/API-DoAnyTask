@@ -96,7 +96,7 @@
   "include": [
     "src/**/*.ts",
     "spec/**/*.ts"
-  ],
+, "src/controllers/user.controller.ts"  ],
   "exclude": [
     "src/public/"
   ]

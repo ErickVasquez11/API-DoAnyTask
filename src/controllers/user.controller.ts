@@ -72,10 +72,27 @@ export const getAllUsers = async (req: Request, res: Response) => {
 
     //Extraemos la query
     const { query } = req;
-    
     const { page, limit } = query;
-    
-    const users = await userModel.find().limit(+(limit as string));
 
-    return res.status(200).json(users);
+    const count = await userModel.countDocuments();
+    const totalPages = Math.ceil(count / limit);
+    const hasPrev = !(page <= 1);
+    const hasNext = page < totalPages; /////correciones de sintaxis
+    const nextPage = hasNext ?
+    '${process.env.HOST}/users?page=${(+page) + 1}&limit=${limit}' : null;
+    const prevPage = hasPrev ?
+     '${process.env.HOST}/users?page=${(+page) - 1}&limit=${limit}' : null;
+
+    const users = await userModel
+        .find()
+        .skip(((page)-1) * limit)
+        .limit(+(limit as string));
+
+    return res.status(200).json({
+        count,
+        hasNext,
+        hasPrev,
+        data: users,
+
+    });
 }

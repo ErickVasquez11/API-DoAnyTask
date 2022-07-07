@@ -81,9 +81,9 @@ export const getAllUsers = async (req: Request, res: Response) => {
     const hasPrev = !(nPage <= 1);
     const hasNext = nPage < totalPages;
     const nextPage = hasNext ?
-    '${process.env.HOST}/users?page=${(nPage) + 1}&limit=${limit}' : null;
+    `${process.env.HOST}/users?page=${(nPage) + 1}&limit=${limit}` : null;
     const prevPage = hasPrev ?
-     '${process.env.HOST}/users?page=${(nPage) - 1}&limit=${limit}' : null;
+    `${process.env.HOST}/users?page=${(nPage) - 1}&limit=${limit}` : null;
 
     const users = await userModel
         .find()
@@ -95,6 +95,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
         hasNext,
         hasPrev,
         data: users,
-
+        nextPage,
+        prevPage
     });
 }

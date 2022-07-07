@@ -14,7 +14,7 @@ export interface IUserModel {
     dateofbirth: string;
     email: string;
     password: string;
-    recovery?: IRecoveryOptions;
+    recovery?: IRecoveryOptions | null;
 
 }
 //Crear un usuario el cual impletementara adentro del schema el IUserModel

@@ -119,3 +119,25 @@ exports.resetPassword = async  (req: Request, res: Response) => {
         return res.status(err.status ?? 400).send(err);
     }
 }
+
+
+exports.resetPassword = async  (req: Request, res: Response) => {
+    try{
+        const {token} = req.params;
+        const {password} = req.body;
+
+        const user = await userModel.findOne({ "recovery.token": token });
+
+        if(!user)
+            throw { status: 404, message: 'Could\'nt find a user with that token'};
+
+        user.password = password;
+        user.recovery = null;
+        await user.save();
+
+        return res.status(200).json({ message: 'Password updated' })
+    }
+    catch(err) {
+        return res.status(err.status ?? 400).send(err);
+    }
+}

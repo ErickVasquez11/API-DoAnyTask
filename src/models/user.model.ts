@@ -17,6 +17,8 @@ export interface IUserModel {
     recovery?: IRecoveryOptions | null;
 
 }
+
+
 //Crear un usuario el cual impletementara adentro del schema el IUserModel
 const userSchema = new Schema<IUserModel>({
     name: {

@@ -15,7 +15,6 @@ export interface IUserModel {
     email: string;
     password: string;
     recovery?: IRecoveryOptions | null;
-
 }
 
 
@@ -48,7 +47,8 @@ const userSchema = new Schema<IUserModel>({
         type: {
             token: String,
             url: String,
-        }
+        },
+        required: true
     }
 });
 

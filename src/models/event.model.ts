@@ -1,8 +1,8 @@
 // creacion de un modelo, importaremos con structuring.
-import { Schema, model, ObjectId , Document} from 'mongoose';
+import { Schema, model, ObjectId } from 'mongoose';
 
 //Creation task
-export interface ITaskModel  {
+export interface IEventModel {
     name: string;
     date: string;
     hour: string;
@@ -10,11 +10,10 @@ export interface ITaskModel  {
     user_id: ObjectId;
 }
 
-var objectId: ObjectId;
-type NewType = ITaskModel;
+type NewType = IEventModel;
 
 //Crear un usuario el cual impletementara adentro del schema el IUserModel
-const taskSchema = new Schema<NewType>({
+const eventSchema = new Schema<NewType>({
     name: {
         type: String,
         required: true,
@@ -35,10 +34,8 @@ const taskSchema = new Schema<NewType>({
         type: Schema.Types.ObjectId, ref: "User",
         required: true,
     }
-   
 });
 
 //exportamos el archivo 
-export default model <ITaskModel>('task', taskSchema);
-exports.taskSchema = taskSchema;
+export default model <IEventModel>('event', eventSchema);
 // Asi tenemos listo nuestro modelo de esquema de nuestro usuario.

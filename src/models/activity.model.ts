@@ -1,5 +1,5 @@
 // creacion de un modelo, importaremos con structuring.
-import { Schema, model } from 'mongoose';
+import { Schema, model, ObjectId } from 'mongoose';
 
 //Creation task
 export interface IActivityModel {
@@ -10,8 +10,8 @@ export interface IActivityModel {
     date: string;
     colaboration: string;
     event: string;
-
-
+    user_id: ObjectId;
+    event_id: ObjectId;
 }
 
 //Crear un usuario el cual impletementara adentro del schema el IUserModel
@@ -44,11 +44,14 @@ const activitySchema = new Schema<IActivityModel>({
         type: String,
         required: true,
     },
-  
-   
-
-    //setearemos el recovery
-   
+    user_id:  {
+        type: Schema.Types.ObjectId, ref: "User",
+        required: true,
+    },
+    event_id:  {
+        type: Schema.Types.ObjectId, ref: "Event",
+        required: true,
+    }   
 });
 
 //exportamos el archivo 

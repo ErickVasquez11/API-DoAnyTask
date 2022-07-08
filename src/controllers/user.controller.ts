@@ -99,3 +99,42 @@ export const getAllUsers = async (req: Request, res: Response) => {
         prevPage
     });
 }
+
+export const deleteUser = async (req: Request, res: Response) => {
+
+    //Extraemos la query
+    const { params } = req;
+
+    try {
+    const user = await userModel.findOne({name: params.name});
+    await userModel.deleteOne({name: params.name })
+    return res.status(user ? 200 : 404).json(user)
+    }
+    catch(err: any) {
+        //logica personalizada para los errores
+        
+        return res.status(400).json(err);
+    }
+} 
+
+export const updateUser = async (req: ICreateUserRequest, res: Response) => {
+    const { body } = req;
+    try{
+// Crearemos un nuevo usuario con el body 
+//logica de negocio
+const doesUserExists = await userModel.findOne({name: body.name })
+//fail fast 
+    if(!doesUserExists)
+    throw { message : 'no existe el usuario'};
+
+    await userModel.updateOne({name: body.name}, body);  
+
+    // Nos retornara la informacion que acabamos de crear
+    return res.status(201).json();
+    }
+    catch(err: any) {
+        //logica personalizada para los errores
+        
+        return res.status(404).json(err);
+    }
+}

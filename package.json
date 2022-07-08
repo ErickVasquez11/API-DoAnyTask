@@ -77,7 +77,9 @@
     "jsonwebtoken": "^8.5.1",
     "module-alias": "^2.2.2",
     "mongoose": "^6.4.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
     "@types/command-line-args": "^5.2.0",

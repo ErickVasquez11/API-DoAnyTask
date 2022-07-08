@@ -19,6 +19,9 @@ app.use(cookieParser());
 // Db Connection 
 dbConnect();
 
+// passport strategies setup
+require('./auth');
+
 app.use(baseRouter);
 //Destructuring, sacar una propiedad desde el objeto
 

@@ -1,5 +1,3 @@
-const key = "memes" + process.env.SENDGRID_KEY
-const keyy = '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'
 const sgMail = require('@sendgrid/mail')
 
 export const mailer = async (mssg: any) => {
@@ -8,5 +6,5 @@ export const mailer = async (mssg: any) => {
         ...mssg,
         from: process.env.SUPPORT_EMAIL
     }
-    await sgMail.send(fullMssg);
+    //Por el momento desactivamos enviar correos: await sgMail.send(fullMssg);
 }
